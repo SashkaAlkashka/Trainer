@@ -16,15 +16,16 @@ export class AuthService{
         const user = await this.validateUser(userDto);
         return this.generateToken(user);
     }
-    private async validateUser(userDto: CreateUserDto){ //надо про то, что такого юзера не существует, добавить + гарды
+    private async validateUser(userDto: CreateUserDto){
         const user = await this.userService.getUserByLogin(userDto.login);
+        if (user == null){
+            throw new UnauthorizedException({message: 'Не существует пользователя с таким логином'})
+        }
         const passEquals = await bcrypt.compare(userDto.password, user.password);
         if(user && passEquals){
             return user;
         }
         throw new UnauthorizedException({message: 'Некорректный пароль'})
-        
-
     }
 
     async register(userDto: CreateUserDto){
