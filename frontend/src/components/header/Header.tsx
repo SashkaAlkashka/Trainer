@@ -1,11 +1,11 @@
 import { FC } from 'react'
 
-const Home: FC = () => {
+const Header: FC = () => {
   return (
     <div>
-      Home
+      HEADER
     </div>
   )
 }
 
-export default Home
+export default Header
