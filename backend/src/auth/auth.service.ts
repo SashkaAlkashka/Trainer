@@ -5,6 +5,7 @@ import { CreateUserDto } from "src/users/dto/create-user.dto";
 import { UserService } from "src/users/users.service";
 import * as bcrypt from 'bcryptjs';
 import { User } from "src/users/user.entity";
+//import { User } from "src/users/user.entity";
 @Injectable()
 export class AuthService{
     constructor(private userService: UserService,

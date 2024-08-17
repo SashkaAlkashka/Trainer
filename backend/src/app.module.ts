@@ -10,7 +10,7 @@ import { AuthModule } from './auth/auth.module';
   providers: [AppService],
   imports: [
     ConfigModule.forRoot({
-      envFilePath : '.env'
+      envFilePath : '.db_info'
     }),
     TypeOrmModule.forRoot({
       type: 'postgres', 
