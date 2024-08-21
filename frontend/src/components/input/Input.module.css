@@ -1,0 +1,18 @@
+.input {
+    height: 70px;
+    width: 435px;
+    border-radius: var(--br-xl);
+    background-color: var(--entry-color);
+    border: 3px solid var(--color-black);
+    box-sizing: border-box;
+    width: 436px;
+    font-size: var(--butts-size);
+    letter-spacing: 0.1px;
+    line-height: 20px;
+    font-family: 'Geologica';
+    flex-shrink: 0;
+    white-space: nowrap;
+    z-index: 2;
+    color: var(--accent-color);
+    padding: 21px var(--padding-5xl);
+}

@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link, NavLink } from 'react-router-dom';
 
 const Header: FC = () => {
-  const isAuth = false
+  const isAuth = true
   return (
     <Navbar bg="dark" data-bs-theme="dark">
         <Container>

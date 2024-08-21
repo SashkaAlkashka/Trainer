@@ -1,0 +1,48 @@
+@font-face {
+    font-family: "Barcade Brawl";   /*Can be any text*/
+    src: local("BarcadeBrawlRegular"),
+      url("./font/BarcadeBrawlRegular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Geologica";   /*Can be any text*/
+    src: local("GeologicaRegular"),
+      url("./font/Geologica-Regular.ttf") format("truetype");
+}
+
+:root {  
+    /* font sizes */
+    --butts-size: 24px;
+    --font-size-lgi: 19px;
+    --h1-size: 64px;
+  
+    /* Colors */
+    --background-color: #66ae9c;
+    --color-black: #000;
+    --light-button-color: #fed4a2;
+    --entry-color: #fbf1d6;
+    --accent-color: #f26b28;
+    --blue: #158f9c;
+  
+    /* Gaps */
+    --gap-3xl: 22px;
+  
+    /* Paddings */
+    --padding-9xl: 28px;
+    --padding-6xl: 25px;
+    --padding-mini: 15px;
+    --padding-base: 16px;
+    --padding-25xl: 44px;
+    --padding-sm: 14px;
+    --padding-12xs: 1px;
+    --padding-5xl: 24px;
+  
+    /* Border radiuses */
+    --br-xl: 20px;
+    --br-61xl: 80px;
+    --br-14xl: 33px;
+  
+    /* Effects */
+    --light-button-shadow: -5px -5px 0px 6px #f5ab62 inset;
+    --dark-button-shadow: -5px -5px 0px 6px #ec3b26 inset;
+  }
