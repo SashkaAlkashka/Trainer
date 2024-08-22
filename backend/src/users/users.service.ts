@@ -12,10 +12,26 @@ export class UserService{
         const user = await this.userRepository.create();
         user.login = dto.login;
         user.password = dto.password;
+        user.isActivated = false;
+        user.name = dto.name;
+        user.class_id = dto.class_id;
+        user.role = 'user';
+        await this.userRepository.save(user);
+        return user;
+    }
+    async createGuest(){
+        const user = await this.userRepository.create();
+        user.login = null;
+        user.password = null;
+        user.isActivated = null;
+        user.name = null;
+        user.class_id = null;
+        user.role = 'guest';
         await this.userRepository.save(user);
         return user;
     }
     async getAllUsers(){
+        console.log('2');
         const users = await this.userRepository.find();
         return users;
     }

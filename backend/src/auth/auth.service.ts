@@ -5,7 +5,6 @@ import { CreateUserDto } from "src/users/dto/create-user.dto";
 import { UserService } from "src/users/users.service";
 import * as bcrypt from 'bcryptjs';
 import { User } from "src/users/user.entity";
-//import { User } from "src/users/user.entity";
 @Injectable()
 export class AuthService{
     constructor(private userService: UserService,
@@ -26,6 +25,10 @@ export class AuthService{
             return user;
         }
         throw new UnauthorizedException({message: 'Некорректный пароль'})
+    }
+    async guest(){
+        const newGuest = await this.userService.createGuest();
+        return this.generateToken(newGuest);
     }
 
     async register(userDto: CreateUserDto){
