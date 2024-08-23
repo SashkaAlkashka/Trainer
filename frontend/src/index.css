@@ -23,6 +23,7 @@
     --entry-color: #fbf1d6;
     --accent-color: #f26b28;
     --blue: #158f9c;
+    --mid-button-color: #f5ab62;
   
     /* Gaps */
     --gap-3xl: 22px;
@@ -45,4 +46,5 @@
     /* Effects */
     --light-button-shadow: -5px -5px 0px 6px #f5ab62 inset;
     --dark-button-shadow: -5px -5px 0px 6px #ec3b26 inset;
+    --mid-button-shadow: -5px -5px 0px 6px rgba(238, 107, 42, 0.7) inset;
   }

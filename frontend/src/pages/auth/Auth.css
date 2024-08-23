@@ -81,6 +81,7 @@ a {
     color: var(--entry-color) !important;
     z-index: 1 !important;
     cursor: pointer !important;
+    margin-top: 20px !important;
 }
 
 

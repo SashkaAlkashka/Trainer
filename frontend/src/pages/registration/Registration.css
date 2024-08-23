@@ -1,0 +1,96 @@
+.regContainer {
+    background-color: #66AE9C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 720px;
+    background-size: auto 100%; 
+    background-position: left top;
+    background-repeat: no-repeat; 
+}
+
+label {
+    width: 108px !important;
+    font-size: var(--butts-size) !important;
+    line-height: 40px !important;
+    text-transform: uppercase !important;
+    font-family: 'Geologica' !important;
+    color: var(--entry-color) !important;
+    text-align: left !important;
+    display: flex !important;
+    align-items: center !important;
+    z-index: 2 !important;
+    white-space: nowrap !important;
+}
+
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-container label {
+    display: block;
+}
+
+.form-container Input {
+    display: block;
+}  
+
+
+.right-column label {
+    justify-content: flex-end !important; /* Выравнивание label справа */
+    text-align: right !important; /* Выравнивание текста справа */
+}
+
+
+.sigh-up {
+    box-shadow: var(--light-button-shadow);
+    border-radius: var(--br-xl);
+    background-color: var(--light-button-color);
+    text-align: center;
+    font-size: var(--butts-size);
+    color: var(--color-black);
+    font-family: 'Geologica';
+    padding: var(--padding-mini);
+    margin-top: 22px;
+}
+
+.back {
+    box-shadow: var(--mid-button-shadow);
+    border-radius: var(--br-xl);
+    background-color: var(--mid-button-color);
+    font-size: var(--butts-size);
+    color: var(--color-black);
+    font-family: 'Geologica';
+    padding: 27px 48px 26px;
+    order: -1; 
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.button-container p {
+    margin: 0;
+    flex-basis: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.space {
+    width: 255px;
+}
+
+.waring {
+    line-height: 40px;
+    text-transform: uppercase;
+    text-shadow: 1px 0 0#000, 0 1px 0#000, -1px 0 0#000, 0-1px 0#000;
+    color: var(--accent-color);
+}
