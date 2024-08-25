@@ -16,6 +16,10 @@ export class AuthController{
     register(@Body() userDto:CreateUserDto){
         return this.authService.register(userDto);
     }
+    @Post('/guest')
+    guest(){
+        return this.authService.guest();
+    }
 
 
 }

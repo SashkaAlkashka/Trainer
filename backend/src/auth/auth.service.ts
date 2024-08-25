@@ -5,7 +5,6 @@ import { CreateUserDto } from "src/users/dto/create-user.dto";
 import { UserService } from "src/users/users.service";
 import * as bcrypt from 'bcryptjs';
 import { User } from "src/users/user.entity";
-//import { User } from "src/users/user.entity";
 @Injectable()
 export class AuthService{
     constructor(private userService: UserService,
@@ -27,6 +26,10 @@ export class AuthService{
         }
         throw new UnauthorizedException({message: 'Некорректный пароль'})
     }
+    async guest(){
+        const newGuest = await this.userService.createGuest();
+        return this.generateToken(newGuest);
+    }
 
     async register(userDto: CreateUserDto){
         const newUser = await this.userService.getUserByLogin(userDto.login);
@@ -38,7 +41,7 @@ export class AuthService{
         return this.generateToken(user);
     }
     private async generateToken(user:User){
-        const payload = {login: user.login, id: user.id}
+        const payload = {login: user.login, id: user.id, isActivated: user.isActivated, role: user.role}
         return{
             token: this.jwtService.sign(payload)
         }
