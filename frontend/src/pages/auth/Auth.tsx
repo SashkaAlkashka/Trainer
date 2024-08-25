@@ -93,7 +93,8 @@ const Auth: FC = () => {
   const submit = (e: FormEvent) => {
     e.preventDefault();
     const target = e.target as typeof e.target & LoginForm;
-    const email = target.email.value;
+    const {email, password} = target;
+    console.log(email.value)
   }
 
   return (
