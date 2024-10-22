@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AuthModule } from './auth/auth.module';
+import { GroupClassModule } from './group_class/group_class.module';
 @Module({
   controllers: [AppController],
   providers: [AppService],
@@ -19,10 +20,10 @@ import { AuthModule } from './auth/auth.module';
       password: process.env.POSTGRESS_PASSWORD, 
       host: process.env.POSTGRES_HOST, 
       database: process.env.POSTGRES_DB,
-      synchronize: true,
+      synchronize: false,
       entities: ['dist/**/*.entity{.ts,.js}'], 
     }),
-    UsersModule, AuthModule
+    UsersModule, AuthModule, GroupClassModule
   ]
 })
 export class AppModule {}

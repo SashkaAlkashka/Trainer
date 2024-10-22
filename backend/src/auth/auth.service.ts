@@ -1,7 +1,7 @@
 
 import { HttpException, HttpStatus, Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { CreateUserDto } from "src/users/dto/create-user.dto";
+import { CreateUserDto, LoginUserDto } from "src/users/dto/create-user.dto";
 import { UserService } from "src/users/users.service";
 import * as bcrypt from 'bcryptjs';
 import { User } from "src/users/user.entity";
@@ -11,11 +11,11 @@ export class AuthService{
                 private jwtService:JwtService
     ){}
 
-    async login(userDto: CreateUserDto){
+    async login(userDto: LoginUserDto){
         const user = await this.validateUser(userDto);
         return this.generateToken(user);
     }
-    private async validateUser(userDto: CreateUserDto){
+    private async validateUser(userDto: LoginUserDto){
         const user = await this.userService.getUserByLogin(userDto.login);
         if (user == null){
             throw new UnauthorizedException({message: 'Не существует пользователя с таким логином'})
