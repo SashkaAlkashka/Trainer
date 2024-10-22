@@ -3,19 +3,22 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "./user.entity";
 import { Repository } from "typeorm";
 import { CreateUserDto } from "./dto/create-user.dto";
+import { Class } from "src/group_class/class.entity";
+import { GroupClassService } from "src/group_class/group_class.service";
 @Injectable()
 export class UserService{
     constructor(@InjectRepository(User)
-    private readonly userRepository: Repository<User>){}
+    private readonly userRepository: Repository<User>,
+    private readonly groupClassService: GroupClassService
+){}
 
     async createUser(dto: CreateUserDto){
         const user = await this.userRepository.create();
         user.login = dto.login;
         user.password = dto.password;
         user.isActivated = false;
-        user.name = dto.name;
-        user.class_id = dto.class_id;
         user.role = 'user';
+        user.class_id = (await this.groupClassService.findClassByName(dto.class)).id
         await this.userRepository.save(user);
         return user;
     }
