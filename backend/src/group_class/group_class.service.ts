@@ -40,9 +40,10 @@ export class GroupClassService{
     };
 
     
-    async getClassesOfGroup(group_id: number): Promise<Class[]> {
+    async getClassesOfGroup(group_name: string): Promise<Class[]> {
+        const group_id = await this.findGroupByName(group_name);
         const classes = await this.classRepository.find({
-            where: { group: { id: group_id } },
+            where: { group: { id: group_id.id } },
         });
         return classes;
     }
