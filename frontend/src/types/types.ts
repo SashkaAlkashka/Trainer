@@ -1,4 +1,7 @@
 export interface IUserData {
-    email: string, 
-    password: string
+    login: string, 
+    password: string, 
+    name?: string, 
+    class_id?: number,
+    token?: string
 }

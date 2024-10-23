@@ -7,74 +7,85 @@ import { AuthService } from '../../services/auth.service'
 import { toast } from 'react-toastify'
 
 const Registration: FC = () => {
-    const [email, setEmail] = useState<string>('')
+    const [login, setLogin] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const [name, setName] = useState<string>('')
+    const [classId, setClassId] = useState<string>('')
 
     const registrationHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         try {
-            e.preventDefault()
-            const data = await AuthService.registration({email, password})
-            if (data) {
-                toast.success('Аккаунт создан')
+            e.preventDefault();
+            const data = await AuthService.registration({ login, password, name, class_id: parseInt(classId, 10) });
+            if (data && data.token) { // Проверяем наличие token
+                // Сохраняем токен в локальное хранилище или состояние
+                localStorage.setItem('token', data.token);
+                toast.success('Аккаунт создан');
+            } else {
+                toast.error('Ошибка при регистрации: токен не получен');
             }
         } catch (err: any) {
             const error = err.response?.data.message;
-            toast.error(error.toString())
+            toast.error(error.toString());
         }
-    }
+    };
 
-    
-  return (
-    <>
-        <div className='regContainer' style={{backgroundImage: `url(${regBack})`}}>
-            <div className='container'>
-                <div className='row justify-content-center'>
+    return (
+        <>
+            <div className='regContainer' style={{ backgroundImage: `url(${regBack})` }}>
+                <div className='container'>
+                    <div className='row justify-content-center'>
                         <div className='col form'>
                             <div className='form-container'>
-                                <form onSubmit={registrationHandler} style={{marginBottom: '20px'}}>
+                                <form onSubmit={registrationHandler} style={{ marginBottom: '20px' }}>
                                     <div className='container'>
                                         <div className='row'>
-                                        <div style={{marginRight: '50px'}} className='col'>
-                                            <label>логин</label>
-                                            <Input
-                                             placeholder='Введите email' 
-                                             name='email'
-                                             onChange={(e)=> setEmail(e.target.value)}
-                                             ></Input>
-                                            <label style={{marginTop: '22px'}}>пароль</label>
-                                            <Input 
-                                            placeholder='Введите пароль' 
-                                            name='password'
-                                            onChange={(e)=> setPassword(e.target.value)}
-                                            ></Input>
-                                            <label style={{marginTop: '22px'}}>повторите пароль</label>
-                                            <Input placeholder='Повторите пароль' name='password'></Input>
-                                        </div>
-                                        <div className='col right-column'>
-                                            <label>поток</label>
-                                            <Input placeholder='Введите номер курса' name='email'></Input>
-                                            <label style={{marginTop: '22px'}}>группа</label>
-                                            <Input placeholder='Введите поток (БИВТ)' name='email'></Input>
-                                            <label style={{marginTop: '22px'}}>группа</label>
-                                            <Input placeholder='Введите номер группы' name='email'></Input>
-                                        </div>
+                                            <div style={{ marginRight: '50px' }} className='col'>
+                                                <label>логин</label>
+                                                <Input
+                                                    placeholder='Введите email'
+                                                    name='login'
+                                                    onChange={(e) => setLogin(e.target.value)}
+                                                ></Input>
+                                                <label style={{ marginTop: '22px' }}>пароль</label>
+                                                <Input
+                                                    placeholder='Введите пароль'
+                                                    name='password'
+                                                    onChange={(e) => setPassword(e.target.value)}
+                                                ></Input>
+                                                <label style={{ marginTop: '22px' }}>повторите пароль</label>
+                                                <Input placeholder='Повторите пароль' name='password'></Input>
+                                            </div>
+                                            <div className='col right-column'>
+                                                <label>Имя</label>
+                                                <Input placeholder='Имя' name='name'
+                                                onChange={(e) => setName(e.target.value)}
+                                                ></Input>
+                                                <label style={{ marginTop: '22px' }}>группа</label>
+                                                <Input placeholder='Введите поток (БИВТ)' name='email'></Input>
+                                                <label style={{ marginTop: '22px' }}>группа</label>
+                                                <Input
+                                                    placeholder='Введите номер группы'
+                                                    name='class_id'
+                                                    onChange={(e) => setClassId(e.target.value)}
+                                                ></Input>
+                                            </div>
                                         </div>
                                     </div>
                                     <Button1 className='sigh-up'>зарегистрироваться</Button1>
                                 </form>
                             </div>
-                            
+
                             <div className='button-container'>
                                 <Button1 className='back'>Назад</Button1>
                                 <p className='waring'>Такой группы не существует</p>
-                                <div className='space'/>
+                                <div className='space' />
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </>
-  )
+        </>
+    )
 }
 
 export default Registration
