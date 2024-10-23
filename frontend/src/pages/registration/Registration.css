@@ -90,7 +90,6 @@ label {
 
 .waring {
     line-height: 40px;
-    text-transform: uppercase;
     text-shadow: 1px 0 0#000, 0 1px 0#000, -1px 0 0#000, 0-1px 0#000;
     color: var(--accent-color);
 }
