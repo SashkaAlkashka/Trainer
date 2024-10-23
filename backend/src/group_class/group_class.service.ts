@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Group } from "./group.entity";
@@ -9,6 +9,16 @@ export class GroupClassService{
     private readonly groupRepository: Repository<Group>,
     @InjectRepository(Class)
     private readonly classRepository: Repository<Class>){}
+
+    async confirmExistanceOfClass(a_name: string): Promise<Class>{
+        const class_ = await this.classRepository.findOne({
+            where:{name:a_name}
+        })
+        if (class_ == null){
+            throw new UnauthorizedException({message: 'Такой группы не существует'})
+        }
+        return class_;
+    }
 
     async findClassByName(a_name: string): Promise<Class>{
         const class_ = await this.classRepository.findOne({

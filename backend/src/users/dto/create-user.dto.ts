@@ -7,8 +7,7 @@ export class CreateUserDto{
     password: string;
     @ApiProperty({example: '2', description: 'Курс пользователя'})
     course: number;
-    @ApiProperty({example: 'БИВТ-22-(1-5)', description: 'Поток пользователя'})
-    group: string;
+
     @ApiProperty({example: 'БИВТ-22-2', description: 'Группа пользователя'})
     class: string;
 

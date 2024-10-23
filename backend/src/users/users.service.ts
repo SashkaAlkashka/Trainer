@@ -17,7 +17,7 @@ export class UserService{
         user.password = dto.password;
         user.isActivated = false;
         user.role = 'user';
-        user.class_id = (await this.groupClassService.findClassByName(dto.class)).id
+        user.class_id = (await this.groupClassService.confirmExistanceOfClass(dto.class)).id
         await this.userRepository.save(user);
         return user;
     }
