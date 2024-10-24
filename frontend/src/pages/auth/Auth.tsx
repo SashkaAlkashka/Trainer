@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
+import { FC, FormEvent, useState } from 'react'
 import './Auth.css'
 import authBack from '../../image/loginBack.svg'
 import Button1 from '../../components/buttons/Button1'
@@ -6,35 +6,53 @@ import Input from '../../components/input/Input'
 import { AuthService } from '../../services/auth.service'
 import { toast } from 'react-toastify'
 
-
 const Auth: FC = () => {
-
   const [login, setLogin] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const name = "Makhina"
-  const class_id = 1
-  
-  const submit = async (e: FormEvent) => {
-    e.preventDefault();
-  
-    try {
-      const data = await AuthService.login({ login, password, name, class_id });;
-      if (data && data.token) { // Проверяем наличие token
-        // Сохраняем токен в локальное хранилище или состояние
-        localStorage.setItem('token', data.token);
-        toast.success('Успешная аутентификация');
-      } else {
-        toast.error('Ошибка при аутентификации: токен не получен');
-      }
-    } catch (err: any) {
-      const error = err.response?.data.message;
-      toast.error(error.toString());
+  const [errors, setErrors] = useState<{ login?: string; password?: string }>({})
+
+  const validateForm = () => {
+    const newErrors: { login?: string; password?: string } = {}
+
+    if (!login) {
+      newErrors.login = 'Email обязателен'
+    } else if (!/^m.{7}@edu\.misis\.ru$/.test(login)) {
+      newErrors.login = 'Логин должен соответствовать маске m*******@edu.misis.ru'
     }
 
+    if (!password) {
+      newErrors.password = 'Пароль обязателен'
+    } else if (password.length < 6) {
+      newErrors.password = 'Пароль должен быть не менее 6 символов'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const submit = async (e: FormEvent) => {
+    e.preventDefault()
+
+    if (!validateForm()) {
+      return
+    }
+
+    try {
+      const data = await AuthService.login({ login, password })
+      if (data && data.token) {
+        localStorage.setItem('token', data.token)
+        toast.success('Успешная аутентификация')
+      } else {
+        toast.error('Ошибка при аутентификации: токен не получен')
+      }
+    } catch (err: any) {
+      const error = err.response?.data.message
+      toast.error(error.toString())
+    }
   }
 
   return (
-    <div className='authContainer' style={{backgroundImage: `url(${authBack})`}}>
+    <div className='authContainer' style={{ backgroundImage: `url(${authBack})` }}>
       <div className='container'>
         <div className='row justify-content-center'>
           <div className='col'>
@@ -45,25 +63,25 @@ const Auth: FC = () => {
             </div>
           </div>
           <div className='col form'>
-            <div className='form-container' >
-              <form style={{marginBottom: '20px'}} onSubmit={submit}>
+            <div className='form-container'>
+              <form style={{ marginBottom: '20px' }} onSubmit={submit}>
                 <label>логин</label>
-                <Input 
+                <Input
                   onChange={(e) => setLogin(e.target.value)}
-                  placeholder='Введите email' 
+                  placeholder='Введите email'
                   name='email'
+                  value={login}
                 />
-                {/*login.isDirty && login.isEmpty && <div style={{ color: 'red' }}>Поле не может быть пустым</div>*/}
-                {/*login.isDirty && login.misisEmailError && <div style={{ color: 'red' }}>Неккоректная почта. Введите почту вуза</div>*/}
-                <label style={{marginTop: '36px'}}>пароль</label>
-                <Input 
+                {errors.login && <div className='error'>{errors.login}</div>}
+                <label style={{ marginTop: '36px' }}>пароль</label>
+                <Input
                   onChange={(e) => setPassword(e.target.value)}
-                  type='password' 
-                  placeholder='Введите пароль' 
+                  type='password'
+                  placeholder='Введите пароль'
                   name='password'
+                  value={password}
                 />
-                {/*password.isDirty && password.isEmpty && <div style={{ color: 'red' }}>Поле не может быть пустым</div>*/}
-                {/*password.isDirty && password.minLengthError && <div style={{ color: 'red' }}>Минимальная длина пароля 6 символов</div>*/}
+                {errors.password && <div className='error'>{errors.password}</div>}
                 <a>Забыли пароль?</a>
                 <Button1 type='submit' className='btn-sigh-in'>Войти</Button1>
               </form>
