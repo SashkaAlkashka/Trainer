@@ -11,11 +11,7 @@ import { GroupClassService } from "./group_class.service";
 export class GroupClassController{
     constructor(private groupclassservice: GroupClassService){}
     
-    @ApiOperation({ summary: 'Вывод всех групп потока' }) 
-    @Get(':group_id') //TODO add handle
-    getClassesOfGroup(@Param('group_id') group_id: number){
-        return this.groupclassservice.getClassesOfGroup(group_id);
-    }
+    
     
 
 }
