@@ -21,5 +21,10 @@ export class AuthController{
         return this.authService.guest();
     }
 
+    @Get('/confirmation/:token')
+    confirmEmail(@Body() token: string){
+        return this.authService.confirm(token);
+    }
+
 
 }
