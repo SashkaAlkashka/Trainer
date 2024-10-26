@@ -35,13 +35,17 @@ label {
     display: block;
 }
 
+.right-column .input-group {
+    flex-direction: row-reverse; /* Размещение label справа */
+}
+
 .form-container Input {
     display: block;
 }  
 
 
 .right-column label {
-    justify-content: flex-end !important; /* Выравнивание label справа */
+    /* justify-content: flex-end !important;  Выравнивание label справа */
     text-align: right !important; /* Выравнивание текста справа */
 }
 
@@ -56,6 +60,10 @@ label {
     font-family: 'Geologica';
     padding: var(--padding-mini);
     margin-top: 22px;
+}
+
+.sigh-up-container {
+    text-align: center;
 }
 
 .back {

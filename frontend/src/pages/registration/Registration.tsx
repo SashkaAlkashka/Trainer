@@ -119,7 +119,7 @@ const Registration: FC = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <Button1 className='sigh-up'>зарегистрироваться</Button1>
+                                    <div className='sigh-up-container'><Button1 className='sigh-up'>ЗАРЕГИСТРИРОВАТЬСЯ</Button1></div>
                                 </form>
                             </div>
 
