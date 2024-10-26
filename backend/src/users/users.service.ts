@@ -42,5 +42,13 @@ export class UserService{
         const user = await this.userRepository.findOne({where: {login}});
         return user;
     }
+    async getUserById(id: number){
+        const user = await this.userRepository.findOne({where: {id}});
+        return user;
+    }
+    async updateUserActivation(id:number){
+        const user = await this.userRepository.findOne({where: {id}});
+        user.isActivated=true;
+    }
 
 }
