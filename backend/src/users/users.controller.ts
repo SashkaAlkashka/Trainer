@@ -24,7 +24,7 @@ export class UsersController{
     }
         */
     @ApiOperation({ summary: 'Вывод всех пользователей' }) 
-    //@UseGuards(JwtAuthGuard)  // Используем Guard для защиты маршрута
+    @UseGuards(JwtAuthGuard)  // Используем Guard для защиты маршрута
     @Roles('user')
     @UseGuards(RolesAuthGuard)
     @ApiBearerAuth('access-token')  // Указываем, что эндпоинт требует Bearer токен
@@ -33,6 +33,7 @@ export class UsersController{
         console.log('1');
         return this.usersService.getAllUsers();
     }
+    
     
 
 }

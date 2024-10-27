@@ -50,5 +50,8 @@ export class UserService{
         const user = await this.userRepository.findOne({where: {id}});
         user.isActivated=true;
     }
+    async saveUser(user: User){
+        return this.userRepository.save(user);
+    }
 
 }

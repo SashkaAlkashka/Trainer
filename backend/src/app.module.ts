@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AuthModule } from './auth/auth.module';
 import { GroupClassModule } from './group_class/group_class.module';
+import { SettingModule } from './setting/setting.module';
 @Module({
   controllers: [AppController],
   providers: [AppService],
@@ -23,7 +24,7 @@ import { GroupClassModule } from './group_class/group_class.module';
       synchronize: false,
       entities: ['dist/**/*.entity{.ts,.js}'], 
     }),
-    UsersModule, AuthModule, GroupClassModule
+    UsersModule, AuthModule, GroupClassModule, SettingModule
   ]
 })
 export class AppModule {}
