@@ -7,6 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { AuthModule } from './auth/auth.module';
 import { GroupClassModule } from './group_class/group_class.module';
 import { SettingModule } from './setting/setting.module';
+import { TopicModule } from './topic_que_ans/topic/topic.module';
+
 @Module({
   controllers: [AppController],
   providers: [AppService],
@@ -24,7 +26,8 @@ import { SettingModule } from './setting/setting.module';
       synchronize: false,
       entities: ['dist/**/*.entity{.ts,.js}'], 
     }),
-    UsersModule, AuthModule, GroupClassModule, SettingModule
+    UsersModule, AuthModule, GroupClassModule, SettingModule,
+    TopicModule
   ]
 })
 export class AppModule {}
