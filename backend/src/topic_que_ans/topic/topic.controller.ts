@@ -9,8 +9,6 @@ import { TopicService } from "./topic.service";
 export class TopicController{
     constructor(private topicservice: TopicService){}
     
-    
-    
 
 }
 

@@ -8,8 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import { GroupClassModule } from './group_class/group_class.module';
 import { SettingModule } from './setting/setting.module';
 import { TopicModule } from './topic_que_ans/topic/topic.module';
-import { QuestionModule } from './topic_que_ans/topic/question/question.module';
-import { AnswerModule } from './topic_que_ans/topic/answer/answer.module';
+import { QuestionModule } from './topic_que_ans/question/question.module';
+import { AnswerModule } from './topic_que_ans/answer/answer.module';
 
 @Module({
   controllers: [AppController],

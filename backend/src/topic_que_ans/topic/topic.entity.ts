@@ -20,18 +20,14 @@ export class Topic {
   name: string;
 
   @ApiProperty({example: '1', description: 'ID предмета'})
-  @ManyToOne(() => Subject) 
-  @JoinColumn({ name: 'subject_id' })
-  subject: Subject;
-  @Column({ type: 'int', nullable: false }) 
-  subject_id: number;
+  @ManyToOne(() => Subject, (subject) => subject.id)
+    subject_id: Subject
+  
 
   @ApiProperty({example: '1', description: 'ID пользователя-создателя'})
-  @ManyToOne(() => User) 
-  @JoinColumn({ name: 'user_id' })
-  user: User;
-  @Column({ type: 'int', nullable: false }) 
-  user_id: number;
+  @ManyToOne(() => User, (user) => user.id)
+    user_id: User
+
 
   @ApiProperty({example: 'false', description: 'Публикация темы'})
   @Column({ type: 'boolean', nullable: false, default: false })

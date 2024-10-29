@@ -19,11 +19,8 @@ export class Answer {
   @Column({ type: 'varchar', length: 1000, nullable: false })
   text: string;
 
-  @ApiProperty({example: '1', description: 'ID темы'})
-  @ManyToOne(() => Question) 
-  @JoinColumn({ name: 'question_id' })
-  question: Question;
-  @Column({ type: 'int', nullable: false }) 
-  question_id: number;
+  @ApiProperty({example: '1', description: 'ID вопроса'})
+  @ManyToOne(() => Question, (question) => question.id)
+    question_id: Question
 
 }

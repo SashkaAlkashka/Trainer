@@ -6,7 +6,7 @@ import {
   ManyToOne,
   JoinColumn
 } from 'typeorm';
-import { Topic } from '../topic.entity';
+import { Topic } from '../topic/topic.entity';
 
 
 @Entity('question')
@@ -20,12 +20,8 @@ export class Question {
   text: string;
 
   @ApiProperty({example: '1', description: 'ID темы'})
-  @ManyToOne(() => Topic) 
-  @JoinColumn({ name: 'topic_id' })
-  subject: Topic;
-  @Column({ type: 'int', nullable: false }) 
-  topic_id: number;
-
+  @ManyToOne(() => Topic, (topic) => topic.id)
+    topic_id: Topic
 
   @ApiProperty({example: '1', description: 'Тип вопроса (1, 2, 3)'})
   @Column({ type: 'int', nullable: false, default: 1 })

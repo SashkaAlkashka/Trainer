@@ -6,12 +6,14 @@ import { Topic } from './topic.entity';
 import { TopicService } from './topic.service';
 import { TopicController } from './topic.controller';
 import { Subject } from 'rxjs';
+import { UsersModule } from 'src/users/users.module';
 
 @Module({
   controllers: [TopicController],
   providers: [TopicService],
   imports: [
-    TypeOrmModule.forFeature([Topic, Subject]), 
+    TypeOrmModule.forFeature([Topic, Subject]),
+    forwardRef(() => UsersModule),
     
   ],
   exports: [],

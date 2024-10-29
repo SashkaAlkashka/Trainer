@@ -19,10 +19,8 @@ export class Class {
   name: string;
 
   @ApiProperty({example: '1', description: 'ID потока, к которому принадлежит группа'})
-  @ManyToOne(() => Group) // Указываем связь ManyToOne с Group
-  @JoinColumn({ name: 'group_id' })
-  group: Group;
 
-  @Column({ type: 'int', nullable: false }) // Исправляем тип данных на 'int', length удаляем
-  group_id: number;
+  @ManyToOne(() => Group, (group) => group.id)
+    group_id: Group
+
 }
